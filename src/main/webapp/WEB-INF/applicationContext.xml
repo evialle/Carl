@@ -21,15 +21,12 @@
 			expression="javax.interceptor.Interceptor" />
 	</context:component-scan>
 
-	<!-- MongoDB -->
-	<mongo:mongo host="localhost" port="27017" />
 
-	<bean id="mongoDbProvider" name="mongoDbProvider"
-		class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg ref="mongo" />
-		<constructor-arg name="databaseName" value="carlDb" />
+	<!-- H2 -->
+	<bean id="org.h2.tools.Server" class="org.h2.tools.Server"
+		factory-method="createTcpServer" init-method="start" destroy-method="stop">
+		<constructor-arg value="-tcp,-tcpAllowOthers,true,-tcpPort,8043" />
 	</bean>
-
 	<!-- Security -->
 	<!-- resource security -->
 	<sec:http auto-config="true" access-denied-page="/pages/login/accessDenied.jsf">
@@ -51,15 +48,8 @@
 			</sec:user-service>
 		</sec:authentication-provider>
 	</sec:authentication-manager>
-<!-- 
-	<bean id="securityContextPersistenceFilter"
-		class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
-		<property name='securityContextRepository'>
-			<bean
-				class='org.springframework.security.web.context.HttpSessionSecurityContextRepository'>
-				<property name='allowSessionCreation' value='false' />
-			</bean>
-		</property>
-	</bean>
- -->
+	<!-- <bean id="securityContextPersistenceFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter"> 
+		<property name='securityContextRepository'> <bean class='org.springframework.security.web.context.HttpSessionSecurityContextRepository'> 
+		<property name='allowSessionCreation' value='false' /> </bean> </property> 
+		</bean> -->
 </beans>

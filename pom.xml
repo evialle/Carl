@@ -182,17 +182,11 @@
 			<systemPath>${project.basedir}/lib/sphinx/WSJ_8gau_13dCep_8kHz_31mel_200Hz_3500Hz.jar</systemPath>
 		</dependency>
 		
-		<!-- MongoDB -->
+		<!-- H2 -->
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-mongodb</artifactId>
-			<version>1.0.2.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongo-java-driver</artifactId>
-			<version>2.7.2</version>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.3.168</version>
 		</dependency>
 
 		<!-- Utils -->
