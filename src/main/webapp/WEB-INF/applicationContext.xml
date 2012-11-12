@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-3.1.xsd
+         http://www.springframework.org/schema/data/mongo
+         http://www.springframework.org/schema/data/mongo/spring-mongo-1.1.xsd
+         http://www.springframework.org/schema/security
+         http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<!-- Injection -->
+	<context:annotation-config />
+
+	<context:component-scan base-package="org.vialle.ia"
+		scoped-proxy="targetClass">
+		<context:include-filter type="annotation"
+			expression="javax.interceptor.Interceptor" />
+	</context:component-scan>
+
+	<!-- MongoDB -->
+	<mongo:mongo host="localhost" port="27017" />
+
+	<bean id="mongoDbProvider" name="mongoDbProvider"
+		class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg name="databaseName" value="carlDb" />
+	</bean>
+
+	<!-- Security -->
+	<!-- resource security -->
+	<sec:http auto-config="true" access-denied-page="/pages/login/accessDenied.jsf">
+		<sec:form-login login-page="/pages/login/login.jsf" />
+		<sec:logout logout-success-url="/pages/login/logout.jsf" />
+		<sec:intercept-url pattern="/pages/admin/**" access="ROLE_USER, ROLE_ADMIN" />
+	</sec:http>
+
+	<!-- business logic (method) security -->
+	<sec:global-method-security
+		secured-annotations="enabled" jsr250-annotations="enabled">
+	</sec:global-method-security>
+
+	<!-- manager responsible for loading user account with assigned roles -->
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider>
+			<sec:user-service id="userService">
+				<sec:user name="eric" password="123456" authorities="ROLE_USER, ROLE_ADMIN" />
+			</sec:user-service>
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+<!-- 
+	<bean id="securityContextPersistenceFilter"
+		class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+		<property name='securityContextRepository'>
+			<bean
+				class='org.springframework.security.web.context.HttpSessionSecurityContextRepository'>
+				<property name='allowSessionCreation' value='false' />
+			</bean>
+		</property>
+	</bean>
+ -->
+</beans>
