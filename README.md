@@ -13,3 +13,5 @@ Carl is based on the following technologies:
  * Spring as main framework
  * JSF implementation PrimeFaces
  * some tests with MongoDb (for fun) and H2
+
+ This tool is based on free and open source tools.
