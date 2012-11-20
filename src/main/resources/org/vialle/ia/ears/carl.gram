@@ -1,11 +1,10 @@
 #JSGF V1.0;
 
-
 grammar carl;
 
 public <cmd> = /50/ ( [<greeting>] <myName> <command> ) | /25/ (<greeting> <myName>) |  /25/ (<greetingBye> <myName>);
 
-<greeting>=  (Hello) | (Good Morning) | (Good Afternoon) | (Good Evening) | (Hi) ;
+<greeting> =  (Hello) | (Good Morning) | (Good Afternoon) | (Good Evening) | (Hi) ;
 
 <greetingBye> = (See you [soon | tomorrow]) | ([Good] bye);
 
@@ -21,7 +20,7 @@ public <cmd> = /50/ ( [<greeting>] <myName> <command> ) | /25/ (<greeting> <myNa
 
 <wakeup> = wake up;
 
-<shutup> = (shut up) | ([you may | can ] leave [us] ) ;
+<shutup> = (shut up) | ([you may | can ] leave [us] );
 
 <whoareyou>= /30/ (who are you) | /70/ (are you a <machineSynonym>);
 
@@ -34,7 +33,7 @@ public <cmd> = /50/ ( [<greeting>] <myName> <command> ) | /25/ (<greeting> <myNa
 <firstnameList> = /20/ Lili | /70/ Eric | /10/ Benjamin | /10/ Marine | /10/ Dada | /10/ Mass | /10/ (Jean Charles) | /10/ Jeremy;
 
 <mailchecker>= <didIreceivedMessage> | <checkMaibox>;
-<didIreceivedMessage> = [ do | did ]  (I (have | receive | received | get)) | (somebody sent [me]) ) (([new] [ e | electronic] ( message | mail )) | ([new] [ e | electronic] ( messages | mails )));
-<checkMaibox>= check [ my | the ] (mailbox | mails);
+<didIreceivedMessage> = [ do | did ]  (I (have | receive | received | get)) | (somebody sent [me]) ([new] [ e | electronic] ( message | mail )) | ([new] [ e | electronic] ( messages | mails ));
+<checkMaibox>= check [ my | the ] ( mailbox | mails );
 
-<newsUpdate> = (what are the [last] (news | updates) [in the world]) | (what has happened) [today]) | (check the news);
+<newsUpdate> = ( what are the [last] (news | updates) [in the world] ) | (( what has happened ) [today]) | ( check the news );
