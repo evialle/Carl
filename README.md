@@ -1,7 +1,7 @@
 # Carl #
 
 
-### Computer Assitant with Real Language ###
+### Computer Assistant with Real Language ###
 
 
 Carl is in your home and answers you to your daily questions.
