@@ -1,4 +1,4 @@
-package org.vialle.ia.settings.pojo;
+package org.vialle.ia.pojo.settings;
 
 import java.io.Serializable;
 

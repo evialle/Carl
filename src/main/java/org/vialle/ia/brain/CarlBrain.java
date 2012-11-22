@@ -14,7 +14,6 @@ import org.aitools.programd.Core;
 import org.aitools.programd.server.BotAccess;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.springframework.data.mongodb.core.MongoOperations;
 import org.vialle.ia.speech.CarlSpeech;
 
 import com.google.gson.Gson;
@@ -38,9 +37,6 @@ public class CarlBrain {
 	@Inject
 	private CarlSpeech carlSpeech;
 
-	@Inject
-	private MongoOperations mongoTemplate;
-
 	private BotAccess bot;
 
 	private Gson gson;
@@ -59,7 +55,7 @@ public class CarlBrain {
 		URL propertiesUrl = CarlBrain.class.getResource("/core.xml");
 
 		Core coreToUse = new Core(baseURL, propertiesUrl);
-		bot = new BotAccess(coreToUse, ID_ALICEBOT, "Eric");
+		this.bot = new BotAccess(coreToUse, ID_ALICEBOT, "Eric");
 	}
 
 	private void initGson() {
@@ -77,7 +73,7 @@ public class CarlBrain {
 
 		try {
 			cleanInputSpeechForBot = cleanInputSpeechForBot(inputSentence);
-			String content = bot.getResponse(cleanInputSpeechForBot);
+			String content = this.bot.getResponse(cleanInputSpeechForBot);
 
 			try {
 				answer = this.gson.fromJson(content, CarlAiAnswer.class);
@@ -92,18 +88,16 @@ public class CarlBrain {
 				answer.setAction("");
 			}
 
-			processBrain.processAnswer(answer);
+			this.processBrain.processAnswer(answer);
 
 			return true;
 		} catch (Throwable t) {
 			LOG.warn("An unknwon error has occured: " + t.getMessage(), t);
-			carlSpeech
-					.speak("Hum, an error has occured, this is very strange: "
-							+ t.getMessage());
+			this.carlSpeech.speak("Hum, an error has occured, this is very strange: " + t.getMessage());
 			return false;
 		} finally {
 			CarlBrainLog carlBrainLog = new CarlBrainLog(cleanInputSpeechForBot, answer);
-			mongoTemplate.save(carlBrainLog, "carlbrainlog");
+			// TODO mongoTemplate.save(carlBrainLog, "carlbrainlog");
 		}
 	}
 
@@ -111,7 +105,7 @@ public class CarlBrain {
 	 * @param resultText
 	 * @return
 	 */
-	private String cleanInputSpeechForBot(String resultText) {
+	private String cleanInputSpeechForBot(final String resultText) {
 		return resultText.replaceFirst("carl", "");
 	}
 
@@ -119,8 +113,7 @@ public class CarlBrain {
 	 * Tells to the brain that it is ready.
 	 */
 	public void ready() {
-		this.carlSpeech
-				.speak("Hello! My name is Carl, I'm waiting your command.");
+		this.carlSpeech.speak("Hello! My name is Carl, I'm waiting your command.");
 	}
 
 	/**
@@ -135,7 +128,7 @@ public class CarlBrain {
 		public CarlBrainLog() {
 		}
 
-		public CarlBrainLog(String question, CarlAiAnswer answer) {
+		public CarlBrainLog(final String question, final CarlAiAnswer answer) {
 			this.answer = answer;
 			this.question = question;
 		}
@@ -144,14 +137,14 @@ public class CarlBrain {
 		 * @return the question
 		 */
 		public String getQuestion() {
-			return question;
+			return this.question;
 		}
 
 		/**
 		 * @param question
 		 *            the question to set
 		 */
-		public void setQuestion(String question) {
+		public void setQuestion(final String question) {
 			this.question = question;
 		}
 
@@ -159,14 +152,14 @@ public class CarlBrain {
 		 * @return the answer
 		 */
 		public CarlAiAnswer getAnswer() {
-			return answer;
+			return this.answer;
 		}
 
 		/**
 		 * @param answer
 		 *            the answer to set
 		 */
-		public void setAnswer(CarlAiAnswer answer) {
+		public void setAnswer(final CarlAiAnswer answer) {
 			this.answer = answer;
 		}
 	}

@@ -1,13 +1,13 @@
 package org.vialle.ia.ears;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Asynchronous;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.scheduling.annotation.Async;
 import org.vialle.ia.brain.CarlBrain;
 
 import edu.cmu.sphinx.frontend.util.Microphone;
@@ -22,7 +22,7 @@ public class CarlEars extends Thread {
 	private static final Logger LOG = LogManager.getLogger(CarlEars.class);
 
 	private static final String SPHINX_CONFIGURATION_FILE = "carl.config.xml";
-	
+
 	@Inject
 	private CarlBrain brain;
 
@@ -60,7 +60,7 @@ public class CarlEars extends Thread {
 		startMicrophone();
 
 		do {
-			Result result = recognizer.recognize();
+			Result result = this.recognizer.recognize();
 
 			if (result != null) {
 
@@ -74,11 +74,11 @@ public class CarlEars extends Thread {
 
 				}
 			}
-		} while (enableRecognizerLoop);
+		} while (this.enableRecognizerLoop);
 
 	}
 
-	@Asynchronous
+	@Async
 	private void stopMicrophoneAndPrepare() {
 		stopMicrophone();
 		prepareMicrophone();
@@ -91,9 +91,9 @@ public class CarlEars extends Thread {
 		synchronized (this) {
 
 			LOG.debug("Stop microphone");
-			microphone.stopRecording();
+			this.microphone.stopRecording();
 
-			recognizer.deallocate();
+			this.recognizer.deallocate();
 		}
 	}
 
@@ -103,22 +103,21 @@ public class CarlEars extends Thread {
 		prepareMicrophone();
 
 		LOG.debug("ReStart microphone");
-		microphone.startRecording();
+		this.microphone.startRecording();
 	}
 
 	/**
-* Prepare the microphone to be started.
+	 * Prepare the microphone to be started.
 	 */
 	private void prepareMicrophone() {
 		LOG.debug("Prepare Microphone");
-		synchronized (this) { 
-			cm = new ConfigurationManager(
-					CarlEars.class.getResource(SPHINX_CONFIGURATION_FILE));
+		synchronized (this) {
+			this.cm = new ConfigurationManager(CarlEars.class.getResource(SPHINX_CONFIGURATION_FILE));
 
-			recognizer = (Recognizer) cm.lookup("recognizer");
-			recognizer.allocate();
+			this.recognizer = (Recognizer) this.cm.lookup("recognizer");
+			this.recognizer.allocate();
 
-			microphone = (Microphone) cm.lookup("microphone");
+			this.microphone = (Microphone) this.cm.lookup("microphone");
 		}
 	}
 
@@ -129,10 +128,10 @@ public class CarlEars extends Thread {
 	/**
 	 * @param resultText
 	 */
-	private void processInputSpeech(String resultText) {
+	private void processInputSpeech(final String resultText) {
 		LOG.info("You: " + resultText);
 
-		synchronized(this) {
+		synchronized (this) {
 			this.brain.think(resultText);
 		}
 
