@@ -60,8 +60,6 @@
     <filter-mapping>
         <filter-name>encoding-filter</filter-name>
         <url-pattern>/*</url-pattern>
-
-        <!-- Security Filter -->
     </filter-mapping>
 
 

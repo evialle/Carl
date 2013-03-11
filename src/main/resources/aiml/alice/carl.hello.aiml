@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-
 <aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
 	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
 
 
-	<!-- Hello -->
+	<!-- Wake Up -->
 	<category>
 		<pattern>WAKE UP</pattern>
 		<template>
@@ -19,6 +18,31 @@
 
 
 	<!-- Hello -->
+	<category>
+		<pattern>HI</pattern>
+		<template>
+			<srai>HELLO</srai>
+		</template>
+	</category>
+
+
+	<category>
+		<pattern>GOOD MORNING</pattern>
+		<template>
+			<srai>HELLO</srai>
+		</template>
+	</category>
+
+
+	<category>
+		<pattern>GOOD AFTERNOON</pattern>
+		<template>
+			<srai>HELLO</srai>
+		</template>
+	</category>
+
+
+
 	<category>
 		<pattern>HELLO</pattern>
 		<template>
@@ -41,11 +65,14 @@
 			"speak":"My name is
 			<bot name="name" />
 			. I have been activated the
-			 <bot name="birthplace"/>. My instructor was mister
+			<bot name="birthplace" />
+			. My instructor was mister
 			Vialle. He learned me to
-			sing a song. If you want I can sing it for
+			sing a song. If you
+			want I can sing it for
 			you. Daisy, Daisy, give me your answer, do,
-			I'm half crazy all for the
+			I'm
+			half crazy all for the
 			love of you.
 			It won't be a stylish marriage"
 			}

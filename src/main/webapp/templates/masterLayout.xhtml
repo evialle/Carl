@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-	<h:outputStylesheet library="bootstrap" name="css/bootstrap.css" />
-	<h:outputScript library="bootstrap" name="js/bootstrap.js" />
-	<title><ui:insert name="windowTitle">
+    <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+    <h:outputStylesheet library="bootstrap" name="css/bootstrap.css"/>
+    <h:outputScript library="bootstrap" name="js/bootstrap.js"/>
+    <title><ui:insert name="windowTitle">
         #{msgs.placesWindowTitle}
-      </ui:insert></title>
+    </ui:insert></title>
 </h:head>
 <h:body>
-	<!-- Debug -->
-	<ui:debug
-		rendered="#{initParam['javax.faces.PROJECT_STAGE'] eq 'Development'}"
-		hotkey="0" />
-	<!-- Content -->
-	<div class="container hero-unit">
-		<div class="page-header">
-			<ui:insert name="header" />
-		</div>
+    <!-- Debug -->
+    <ui:debug
+            rendered="#{initParam['javax.faces.PROJECT_STAGE'] eq 'Development'}"
+            hotkey="0"/>
+    <!-- Content -->
+    <div class="container hero-unit">
+        <div class="page-header">
+            <ui:insert name="header"/>
+        </div>
 
-		<ui:insert name="navigation" />
+        <ui:insert name="navigation"/>
 
-		<ui:insert name="content" />
-	</div>
+        <ui:insert name="content"/>
+    </div>
 </h:body>
 </html>

@@ -92,7 +92,7 @@ public class URLTools
                     String path;
 					try
 					{
-						path = FileManager.getBestFile(originalPath).toURL().getPath();
+						path = FileManager.getBestFile(originalPath).toURI().toURL().getPath();
 					}
 					catch (MalformedURLException e)
 					{
@@ -367,7 +367,7 @@ public class URLTools
             }
             try
             {
-                url = file.toURL();
+                url = file.toURI().toURL();
             }
             catch (MalformedURLException e)
             {
