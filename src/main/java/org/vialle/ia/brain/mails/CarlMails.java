@@ -3,21 +3,16 @@
  */
 package org.vialle.ia.brain.mails;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Properties;
+import org.vialle.ia.speech.CarlSpeech;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.mail.Folder;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Store;
-
-import org.vialle.ia.speech.CarlSpeech;
+import javax.mail.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Properties;
 
 /**
  * @author Eric
@@ -61,6 +56,7 @@ public class CarlMails {
 			answerSpeech.append("You have no messages");
 		}
 
+       carlSpeech.speak(answerSpeech);
 	}
 
 }

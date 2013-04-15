@@ -7,7 +7,7 @@
         <xs:documentation>This is the schema for plugin configuration for Program
         D.</xs:documentation>
     </xs:annotation>
-    <xs:import namespace="http://aitools.org/programd/4.6" schemaLocation="./common-types.xsd"/>
+    <xs:import namespace="http://aitools.org/programd/4.6" schemaLocation="common-types.xsd"/>
     <xs:element name="plugins">
         <xs:complexType>
             <xs:sequence minOccurs="0" maxOccurs="unbounded">

@@ -273,7 +273,7 @@ public class CoreSettings extends Settings
             throw new UserError(e);
         }
 
-        setStartupFilePath(URLTools.contextualize(this.path, this.properties.getProperty("programd.startup-file-path", "bots.xml")));
+        setStartupFilePath(URLTools.contextualize(this.path, this.properties.getProperty("programd.startup-file-path", "WEB-INF/bots.xml")));
 
         String mergePolicyValue = this.properties.getProperty("programd.merge.policy", "combine");
          
@@ -369,11 +369,11 @@ public class CoreSettings extends Settings
 
         setExitImmediatelyOnStartup(Boolean.valueOf(this.properties.getProperty("programd.exit-immediately-on-startup", "false")).booleanValue());
 
-        setSchemaLocationAIML(URLTools.contextualize(this.path, this.properties.getProperty("programd.schema-location.AIML", "../resources/schema/AIML.xsd")));
+        setSchemaLocationAIML(URLTools.contextualize(this.path, this.properties.getProperty("programd.schema-location.AIML", "resources/schema/AIML.xsd")));
 
-        setSchemaLocationPlugins(URLTools.contextualize(this.path, this.properties.getProperty("programd.schema-location.plugins", "../resources/schema/plugins.xsd")));
+        setSchemaLocationPlugins(URLTools.contextualize(this.path, this.properties.getProperty("programd.schema-location.plugins", "resources/schema/plugins.xsd")));
 
-        setSchemaLocationTestCases(URLTools.contextualize(this.path, this.properties.getProperty("programd.schema-location.test-cases", "../resources/schema/test-cases.xsd")));
+        setSchemaLocationTestCases(URLTools.contextualize(this.path, this.properties.getProperty("programd.schema-location.test-cases", "resources/schema/test-cases.xsd")));
 
         setSystemInterpreterDirectory(URLTools.contextualize(this.path, this.properties.getProperty("programd.system-interpreter.directory", "..")));
 
@@ -409,7 +409,7 @@ public class CoreSettings extends Settings
 
         setDatabasePassword(this.properties.getProperty("programd.database.password", "yourpassword"));
 
-        setConfLocationPlugins(URLTools.contextualize(this.path, this.properties.getProperty("programd.conf-location.plugins", "plugins.xml")));
+        setConfLocationPlugins(URLTools.contextualize(this.path, this.properties.getProperty("programd.conf-location.plugins", "WEB-INF/plugins.xml")));
 
     }
 

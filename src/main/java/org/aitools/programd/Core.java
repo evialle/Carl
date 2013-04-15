@@ -9,20 +9,6 @@
 
 package org.aitools.programd;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.net.InetAddress;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.xml.parsers.SAXParser;
-
 import org.aitools.programd.bot.Bot;
 import org.aitools.programd.bot.Bots;
 import org.aitools.programd.graph.Graphmaster;
@@ -36,24 +22,26 @@ import org.aitools.programd.parser.BotsConfigurationFileParser;
 import org.aitools.programd.processor.ProcessorException;
 import org.aitools.programd.processor.aiml.AIMLProcessorRegistry;
 import org.aitools.programd.processor.botconfiguration.BotConfigurationElementProcessorRegistry;
-import org.aitools.programd.util.AIMLWatcher;
-import org.aitools.programd.util.ClassUtils;
-import org.aitools.programd.util.DeveloperError;
-import org.aitools.programd.util.FileManager;
-import org.aitools.programd.util.Heart;
-import org.aitools.programd.util.JDKLogHandler;
-import org.aitools.programd.util.ManagedProcesses;
-import org.aitools.programd.util.UnspecifiedParameterError;
-import org.aitools.programd.util.URLTools;
-import org.aitools.programd.util.UserError;
-import org.aitools.programd.util.UserSystem;
-import org.aitools.programd.util.XMLKit;
+import org.aitools.programd.util.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
-import org.w3c.dom.Document;
+
+import javax.xml.parsers.SAXParser;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The "core" of Program D, independent of any interfaces.
@@ -78,7 +66,7 @@ public class Core
     public static final String BUILD = "";
     
     /** The location of the AIML schema. */
-    private static final String AIML_SCHEMA_LOCATION = "resources/schema/AIML.xsd";
+    private static final String AIML_SCHEMA_LOCATION = "schema/AIML.xsd";
 
     /** The namespace URI of the bot configuration. */
     public static final String BOT_CONFIG_SCHEMA_URI = "http://aitools.org/programd/4.6/bot-configuration";
@@ -87,7 +75,7 @@ public class Core
     public static final String PLUGIN_CONFIG_SCHEMA_URI = "http://aitools.org/programd/4.6/plugins";
     
     /** The location of the plugins schema. */
-    private static final String PLUGINS_SCHEMA_LOCATION = "resources/schema/plugins.xsd";
+    private static final String PLUGINS_SCHEMA_LOCATION = "schema/plugins.xsd";
         
     /** The base URL. */
     private URL baseURL;
@@ -243,8 +231,9 @@ public class Core
         
         this.aimlProcessorRegistry = new AIMLProcessorRegistry();
         this.botConfigurationElementProcessorRegistry = new BotConfigurationElementProcessorRegistry();
-        
-        this.parser = XMLKit.getSAXParser(getClass().getResource( "/" + AIML_SCHEMA_LOCATION), "AIML");
+
+        URL resource = getClass().getClassLoader().getResource("/" + AIML_SCHEMA_LOCATION);
+        this.parser = XMLKit.getSAXParser(resource, "AIML");
         
         this.graphmaster = new Graphmaster(this);
         this.bots = new Bots();
