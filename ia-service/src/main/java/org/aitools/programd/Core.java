@@ -66,7 +66,7 @@ public class Core
     public static final String BUILD = "";
     
     /** The location of the AIML schema. */
-    private static final String AIML_SCHEMA_LOCATION = "/schema/AIML.xsd";
+    private static final String AIML_SCHEMA_LOCATION = "schema/AIML.xsd";
 
     /** The namespace URI of the bot configuration. */
     public static final String BOT_CONFIG_SCHEMA_URI = "http://aitools.org/programd/4.6/bot-configuration";
@@ -75,7 +75,7 @@ public class Core
     public static final String PLUGIN_CONFIG_SCHEMA_URI = "http://aitools.org/programd/4.6/plugins";
     
     /** The location of the plugins schema. */
-    private static final String PLUGINS_SCHEMA_LOCATION = "/schema/plugins.xsd";
+    private static final String PLUGINS_SCHEMA_LOCATION = "schema/plugins.xsd";
         
     /** The base URL. */
     private URL baseURL;
@@ -232,7 +232,7 @@ public class Core
         this.aimlProcessorRegistry = new AIMLProcessorRegistry();
         this.botConfigurationElementProcessorRegistry = new BotConfigurationElementProcessorRegistry();
 
-        URL resource = getClass().getResource(AIML_SCHEMA_LOCATION);
+        URL resource = getClass().getClassLoader().getResource("/" + AIML_SCHEMA_LOCATION);
         this.parser = XMLKit.getSAXParser(resource, "AIML");
         
         this.graphmaster = new Graphmaster(this);
