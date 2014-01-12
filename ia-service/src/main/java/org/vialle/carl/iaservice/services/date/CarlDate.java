@@ -1,6 +1,7 @@
-package org.vialle.carl.iaservice.services.time;
+package org.vialle.carl.iaservice.services.date;
 
 
+import org.vialle.carl.iaservice.services.CarlService;
 import org.vialle.carl.iaservice.services.speech.CarlSpeech;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -12,7 +13,7 @@ import java.util.Locale;
 
 @Named
 @ApplicationScoped
-public class CarlDate {
+public class CarlDate implements CarlService {
 	
 	private static final SimpleDateFormat SDF = new SimpleDateFormat("EEEE d MMMM, 'it is' H 'hours' m", Locale.ENGLISH);
 	

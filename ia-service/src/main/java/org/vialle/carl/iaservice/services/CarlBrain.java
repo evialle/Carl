@@ -66,7 +66,7 @@ public class CarlBrain {
 	 * @param inputSentence
 	 * @return
 	 */
-	public boolean think(final String inputSentence) {
+	public CarlAiAnswer think(final String inputSentence) {
 		CarlAiAnswer answer = null;
 		String cleanInputSpeechForBot = null;
 
@@ -80,25 +80,27 @@ public class CarlBrain {
 					answer = new CarlAiAnswer();
 					answer.setSpeak(StringUtils.EMPTY);
 					answer.setAction(StringUtils.EMPTY);
+                    answer.setError("Not recognized");
 				}
 			} catch (JsonSyntaxException jsonException) {
 				answer = new CarlAiAnswer();
 				answer.setSpeak(content.replaceAll("<br(.*)/>", "").trim());
-				answer.setAction("");
+				answer.setAction(StringUtils.EMPTY);
+                answer.setError(jsonException.getMessage());
 			}
 
 			this.processBrain.processAnswer(answer);
 
-			return true;
 		} catch (Throwable t) {
 			LOG.warn("An unknwon error has occured: " + t.getMessage(), t);
 			this.carlSpeech.speak("Hum, an error has occured, this is very strange: " + t.getMessage());
-			return false;
 		} finally {
 			CarlBrainLog carlBrainLog = new CarlBrainLog(cleanInputSpeechForBot, answer);
 			// TODO mongoTemplate.save(carlBrainLog, "carlbrainlog");
 		}
-	}
+        return answer;
+
+    }
 
 	/**
 	 * @param resultText

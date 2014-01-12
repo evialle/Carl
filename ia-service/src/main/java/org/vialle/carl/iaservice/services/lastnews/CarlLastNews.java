@@ -4,6 +4,7 @@ import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
+import org.vialle.carl.iaservice.services.CarlService;
 import org.vialle.carl.iaservice.services.speech.CarlSpeech;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Named
 @ApplicationScoped
-public class CarlLastNews {
+public class CarlLastNews implements CarlService {
 
 	@Inject
 	private CarlSpeech speech;

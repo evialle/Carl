@@ -7,6 +7,7 @@ import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 import org.jdom.Element;
+import org.vialle.carl.iaservice.services.CarlService;
 import org.vialle.carl.iaservice.services.speech.CarlSpeech;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -23,7 +24,7 @@ import java.util.Locale;
 
 @Named
 @ApplicationScoped
-public class CarlWeather {
+public class CarlWeather implements CarlService {
 
 	private static long PARIS_W = 615702;
 

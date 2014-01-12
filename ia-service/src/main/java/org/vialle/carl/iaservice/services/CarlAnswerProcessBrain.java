@@ -7,7 +7,7 @@ package org.vialle.carl.iaservice.services;
 import org.vialle.carl.iaservice.services.lastnews.CarlLastNews;
 import org.vialle.carl.iaservice.services.mails.CarlMails;
 import org.vialle.carl.iaservice.services.speech.CarlSpeech;
-import org.vialle.carl.iaservice.services.time.CarlDate;
+import org.vialle.carl.iaservice.services.date.CarlDate;
 import org.vialle.carl.iaservice.services.weather.CarlWeather;
 
 import javax.enterprise.context.ApplicationScoped;

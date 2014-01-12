@@ -12,6 +12,10 @@ public class CarlAiAnswer {
 	private String action = StringUtils.EMPTY;
 	
 	private String speak = StringUtils.EMPTY;
+
+
+
+    private String error = StringUtils.EMPTY;
 	
 	public CarlAiAnswer() {
 	}
@@ -53,4 +57,11 @@ public class CarlAiAnswer {
 		this.speak = speak;
 	}
 
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
 }

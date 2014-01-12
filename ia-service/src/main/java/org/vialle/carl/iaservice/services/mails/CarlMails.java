@@ -3,6 +3,7 @@
  */
 package org.vialle.carl.iaservice.services.mails;
 
+import org.vialle.carl.iaservice.services.CarlService;
 import org.vialle.carl.iaservice.services.speech.CarlSpeech;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -20,7 +21,7 @@ import java.util.Properties;
  */
 @Named
 @ApplicationScoped
-public class CarlMails {
+public class CarlMails implements CarlService {
 
 	private static final String IMAP_SERVER = "imap.gmail.com";
 
@@ -58,5 +59,7 @@ public class CarlMails {
 
        carlSpeech.speak(answerSpeech);
 	}
+
+
 
 }
