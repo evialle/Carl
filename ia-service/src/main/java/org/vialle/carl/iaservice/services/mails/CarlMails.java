@@ -3,6 +3,7 @@
  */
 package org.vialle.carl.iaservice.services.mails;
 
+import org.vialle.carl.iaservice.services.CarlAiAnswer;
 import org.vialle.carl.iaservice.services.CarlService;
 import org.vialle.carl.iaservice.services.speech.CarlSpeech;
 
@@ -19,7 +20,7 @@ import java.util.Properties;
  * @author Eric
  * 
  */
-@Named
+@Named("mails")
 @ApplicationScoped
 public class CarlMails implements CarlService {
 
@@ -34,7 +35,7 @@ public class CarlMails implements CarlService {
 	@Inject
 	private CarlSpeech carlSpeech;
 
-	public void process() throws MessagingException {
+	public void process(final CarlAiAnswer carlAiAnswer) throws MessagingException {
 
 		StringBuilder answerSpeech = new StringBuilder();
 

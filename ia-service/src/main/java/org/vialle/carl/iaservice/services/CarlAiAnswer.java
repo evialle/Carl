@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class CarlAiAnswer {
 	
-	private String action = StringUtils.EMPTY;
+	private String type = StringUtils.EMPTY;
 	
 	private String speak = StringUtils.EMPTY;
 
@@ -24,23 +24,23 @@ public class CarlAiAnswer {
 		this.speak = speak;
 	}
 	
-	public CarlAiAnswer(final String speak, final String action) {
+	public CarlAiAnswer(final String speak, final String type) {
 		this.speak = speak;
-		this.action = action;
+		this.type = type;
 	}
 	
 	/**
 	 * @return the action
 	 */
 	public String getAction() {
-		return action;
+		return type;
 	}
 
 	/**
 	 * @param action the action to set
 	 */
-	public void setAction(String action) {
-		this.action = action;
+	public void setAction(String type) {
+		this.type = type;
 	}
 
 	/**

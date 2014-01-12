@@ -1,6 +1,7 @@
 package org.vialle.carl.iaservice.services.date;
 
 
+import org.vialle.carl.iaservice.services.CarlAiAnswer;
 import org.vialle.carl.iaservice.services.CarlService;
 import org.vialle.carl.iaservice.services.speech.CarlSpeech;
 
@@ -11,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-@Named
+@Named(value = "Date")
 @ApplicationScoped
 public class CarlDate implements CarlService {
 	
@@ -19,8 +20,9 @@ public class CarlDate implements CarlService {
 	
 	@Inject
     CarlSpeech speech;
-	
-	public void process() {
+
+    @Override
+	public void process(final CarlAiAnswer carlAiAnswer) {
 		speech.speak("We are the " + SDF.format(new Date()));
 	}
 

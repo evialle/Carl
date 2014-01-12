@@ -30,7 +30,7 @@
 		<pattern>WHAT IS THE WEATHER</pattern>
 		<template>
 			{
-			"action":"weather",
+			"type":"weather",
 			"speak":"I'm checking the weather"
 			}
 		</template>

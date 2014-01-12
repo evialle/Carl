@@ -7,6 +7,7 @@ import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 import org.jdom.Element;
+import org.vialle.carl.iaservice.services.CarlAiAnswer;
 import org.vialle.carl.iaservice.services.CarlService;
 import org.vialle.carl.iaservice.services.speech.CarlSpeech;
 
@@ -42,7 +43,8 @@ public class CarlWeather implements CarlService {
 	@Inject
 	private CarlSpeech carlSpeech;
 
-	public void process() throws MalformedURLException, IOException,
+    @Override
+	public void process(final CarlAiAnswer carlAiAnswer) throws MalformedURLException, IOException,
 			IllegalArgumentException, FeedException, ParseException {
 		XmlReader reader = new XmlReader(new URL(WEATHER_RSS_FEED));
 		SyndFeed feed = new SyndFeedInput().build(reader);

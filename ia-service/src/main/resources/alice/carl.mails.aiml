@@ -44,7 +44,7 @@
 		<pattern>CHECK MY MAILS</pattern>
 		<template>
 			{
-			"action":"mails",
+			"type":"mails",
 			"speak":"I'm going to check your mails"
 			}
 		</template>

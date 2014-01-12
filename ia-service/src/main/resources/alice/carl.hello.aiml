@@ -61,7 +61,7 @@
 		<pattern>WHO ARE YOU</pattern>
 		<template>
 			{
-			"action":"hal",
+			"type":"hal",
 			"speak":"My name is
 			<bot name="name" />
 			. I have been activated the

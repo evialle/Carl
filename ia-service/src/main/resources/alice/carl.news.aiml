@@ -45,7 +45,7 @@
 		<pattern>WHAT ARE THE NEWS</pattern>
 		<template>
 			{
-			"action":"lastNews",
+			"type":"lastNews",
 			"speak":"I'm checking the last news"
 			}
 		</template>

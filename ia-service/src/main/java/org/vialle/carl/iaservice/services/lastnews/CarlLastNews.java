@@ -4,6 +4,7 @@ import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
+import org.vialle.carl.iaservice.services.CarlAiAnswer;
 import org.vialle.carl.iaservice.services.CarlService;
 import org.vialle.carl.iaservice.services.speech.CarlSpeech;
 
@@ -13,7 +14,7 @@ import javax.inject.Named;
 import java.net.URL;
 import java.util.List;
 
-@Named
+@Named("lastNews")
 @ApplicationScoped
 public class CarlLastNews implements CarlService {
 
@@ -22,7 +23,8 @@ public class CarlLastNews implements CarlService {
 
 	private final static String RSS_FEED_URL = "http://rss.cnn.com/rss/edition.rss";
 
-	public void process() throws Exception {
+    @Override
+	public void process(final CarlAiAnswer carlAiAnswer) throws Exception {
 		
 		XmlReader reader = new XmlReader(new URL(RSS_FEED_URL));
 		SyndFeed feed = new SyndFeedInput().build(reader);
