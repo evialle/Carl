@@ -1,5 +1,6 @@
 # Carl #
 
+[![Build Status](https://travis-ci.org/evialle/Carl.svg?branch=master)](https://travis-ci.org/evialle/Carl)
 
 ### Computer Assistant with Real Language ###
 
